@@ -1,20 +1,31 @@
-with open('input.txt', 'r') as f:
-    data = [int(i) for i in f.readlines() if i != '\n']
-
-# Part 1
-for p in data:
-    q = 2020 - p
-    if q in data:
-        print(p * q)
-        break
-
-# Part 2
-for i in range(len(data)):
-    for j in range(i+1, len(data)):
+def lookingfor2(goal, liste):
+    for i in range(len(liste)):
         p = data[i]
-        q = data[j]
-        r = 2020 - p - q
+        for j in range(i+1, len(data)):
+            q = data[j]
+            if p + q == goal:
+                return p * q
 
-        if r in data:
-            print(p*q*r)
-            break
+    return -1
+
+def lookingfor3(goal, liste):
+    for i in range(len(liste)):
+        liste_cp = liste[::]
+
+        p = data[i]
+        liste_maj = liste_cp[i+1:]
+        r = lookingfor2(goal - p, liste_maj)
+
+        if r > 0:
+            return p * r
+
+if __name__ == '__main__':
+    with open('input.txt', 'r') as f:
+        data = [int(i) for i in f.readlines() if i != '\n']
+
+
+    a = lookingfor2(2020, data)
+    b = lookingfor3(2020, data)
+
+    print(a)
+    print(b)
