@@ -9,8 +9,7 @@ def uniq_ans(resp):
 def all_ans(resp):
     ans = ''
     for r in resp[0]:
-        if all(r in l for l in resp):
-            ans += r
+        ans += r * all(r in l for l in resp)
 
     return ans
 
@@ -24,12 +23,8 @@ if __name__ == '__main__':
     tot_2 = 0
     for lines in answers:
         resp = lines.split()
-
-        unq = uniq_ans(resp)
-        ans = all_ans(resp)
-        
-        tot_1 += len(unq)
-        tot_2 += len(ans)
+        tot_1 += len(uniq_ans(resp))
+        tot_2 += len(all_ans(resp))
 
     print(tot_1)
     print(tot_2)
