@@ -14,21 +14,22 @@ def all_ans(resp):
 
     return ans
 
-with open('input.txt', 'r') as f:
-    data = f.read()
+if __name__ == '__main__':
+    with open('input.txt', 'r') as f:
+        data = f.read()
 
-answers = data.split('\n\n')
+    answers = data.split('\n\n')
 
-tot_1 = 0
-tot_2 = 0
-for lines in answers:
-    resp = lines.split()
+    tot_1 = 0
+    tot_2 = 0
+    for lines in answers:
+        resp = lines.split()
 
-    unq = uniq_ans(resp)
-    ans = all_ans(resp)
-    
-    tot_1 += len(unq)
-    tot_2 += len(ans)
+        unq = uniq_ans(resp)
+        ans = all_ans(resp)
+        
+        tot_1 += len(unq)
+        tot_2 += len(ans)
 
-print(tot_1)
-print(tot_2)
+    print(tot_1)
+    print(tot_2)
